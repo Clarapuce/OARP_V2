@@ -1,0 +1,6 @@
+INSTALLATION DU LOGICIEL OARP
+
+Pour installer le logiciel OARP, lancez d'abord le fichier "OARP_installation".
+Vous pourrez ensuite lancer le logiciel avec le raccourcie OARP ou le fichier OARP.exe.
+
+Merci d'avoir choisi OARP!

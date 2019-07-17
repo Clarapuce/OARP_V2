@@ -1,0 +1,43 @@
+Bienvenue dans OARP Transdisciplinaire.
+Le logiciel OARP Transdisciplinaire est un logiciel d'aide à la répartition
+des élèves dans les différents projets transdisciplinaire. 
+
+MISE EN PLACE DU FICHIER CSV
+
+Via Google Drive ou toute autre plateforme de partage, veuillez faire renseigner
+aux élèves leur préférences de projets dans un tableur en leur indiquant les consignes suivantes :
+
+- Noter uniquement les projets qu'ils veulent prendre. Laisser une case vide pour les autres projets
+- Noter les projets qu'ils veulent prendre de 1 à 10, 1 correspondant au projet le plus désiré par l'élève parmis ceux qu'il veut prendre.
+- Mettre autant de projet qu'ils le désirent en premier voeux, autant de projets qu'ils le désirent en deuxième voeux, etc...
+- Noter au moins trois projets
+Attention, toute case contenant autre chose qu'un nombre de 1 à 10 sera considérée comme un projet non désiré par l'élève.
+
+Le tableur doit avoir la liste des projets sur sa première ligne, et la liste des élèves sur la première colonne.
+Exemple : 
+
+	| Projet 1 | Projet 2 | Projet 3 | Projet 4 |
+Eleve 1 |    1     |     1    |    2     |	    |
+Eleve 2 |	   |	 3    |    2	 |     1    |
+Eleve 3 |    2	   |     2    |    1	 |     3    |
+
+
+Exportez le fichier au format csv.
+
+
+UTILISATION DU LOGICIEL OARP
+
+L'interface OARP demande de renseigner : 
+- Le fichier .csv contenant les préférences des élèves
+- Le nombre d'élèves à répartir. Attention à ce que cela corresponde aux données du fichier csv.
+- Le nombre de projets dans lesquels répartir les élèves. 
+- Le nombre minimum et maximum d'élèves par projet. Si ce nombre est fixe, veuillez renseigner le même nombre pour les deux champs.
+
+Si tous vos renseignements vous semblent corrects, veuillez lancer la répartition. 
+Celle-ci peut prendre du temps (jusqu'à 20 secondes) et peut vous donner plusieurs solutions. 
+Celles-ci vous seront transmises également sous forme d'un csv dans un fichier "Solution" présent dans le dossier OARP.
+Vous pouvez sélectionner la répartition de votre choix, ou proposer aux élèves d'en choisir une.
+
+ATTENTION
+OARP étant un logiciel d'aide, il ne saurait remplacer la prise de décision humaine. Aussi les solutions qu'il propose sont uniquement une indication afin d'aider 
+les étudiants de l'ENSC dans leur choix. 
