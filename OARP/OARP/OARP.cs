@@ -31,58 +31,56 @@ namespace OARP
         public bool SolutionValidee { get; set; }
         public OARP()
         {
-            //InitializeComponent();
-            string lien = "C:/Users/Clarapuce/Desktop/ENSC/2A/OARP_V2/Test expe goûté - Feuille 1.csv";
-            ExtraireCsv(lien);
+            InitializeComponent();
+            
         }
 
         private void lancer_Click(object sender, EventArgs e)
         {
-            try
-            {
-                NbEleves = int.Parse(nbEleves.Text);
-                NbProjets = int.Parse(nbProjets.Text);
-                NbMax = int.Parse(maxPlace.Text);
-                NbMin = int.Parse(minPlace.Text);
-                NbParProjet = new int[NbProjets];
-                Eleves = new string[NbEleves];
-                Projets = new string[NbProjets];
-                ProjetsD = new string[NbProjets];
-                SolutionValidee = false;
-            }
-            catch { MessageBox.Show("Veuillez renseigner des nombres supérieurs à zéro."); }
-            if (NbMax < NbMin)
-            {
-                MessageBox.Show("Le nombre de place minimum par projet doit être inférieur au nombre de place maximum par projet.");
-            }
-            else
-            {
-                if (NbEleves > NbProjets * NbMax)
-                {
-                    MessageBox.Show("Il n'y a pas assez de places pour le nombre d'élèves indiqué.");
+            //try
+            //{
+            //    ExtraireCsv(lienFichier.Text);
+            //    NbMax = int.Parse(maxPlace.Text);
+            //    NbMin = int.Parse(minPlace.Text);
+            //    NbParProjet = new int[NbProjets];
+            //    Eleves = new string[NbEleves];
+            //    Projets = new string[NbProjets];
+            //    ProjetsD = new string[NbProjets];
+            //    SolutionValidee = false;
+            //}
+            //catch { MessageBox.Show("Veuillez renseigner des nombres supérieurs à zéro."); }
+            //if (NbMax < NbMin)
+            //{
+            //    MessageBox.Show("Le nombre de place minimum par projet doit être inférieur au nombre de place maximum par projet.");
+            //}
+            //else
+            //{
+            //    if (NbEleves > NbProjets * NbMax)
+            //    {
+            //        MessageBox.Show("Il n'y a pas assez de places pour le nombre d'élèves indiqué.");
 
-                }
-                else
-                {
-                    if (NbEleves < NbMin)
-                    {
-                        MessageBox.Show("Il n'y a pas assez d'élèves pour remplir un projet.");
-                    }
-                    else
-                    {
-                        try
-                        {
-                            LancerRepartition();
+            //    }
+            //    else
+            //    {
+            //        if (NbEleves < NbMin)
+            //        {
+            //            MessageBox.Show("Il n'y a pas assez d'élèves pour remplir un projet.");
+            //        }
+            //        else
+            //        {
+            //            try
+            //            {
+            //                LancerRepartition();
 
-                        }
-                        catch { MessageBox.Show("Il y a eu un problème dans la répartition. Veuillez vérifier que le fichier .csv est correct et qu'il est cohérent avec vos renseignements."); }
+            //            }
+            //            catch { MessageBox.Show("Il y a eu un problème dans la répartition. Veuillez vérifier que le fichier .csv est correct et qu'il est cohérent avec vos renseignements."); }
 
-                    }
+            //        }
 
-                }
-            }
+            //    }
+            //}
 
-
+            LancerRepartition();
 
 
         }
@@ -101,10 +99,19 @@ namespace OARP
 
         private void LancerRepartition()
         {
+            //Initialisation des variables
+            NbMax = int.Parse(maxPlace.Text);
+            NbMin = int.Parse(minPlace.Text);
+            Eleves = new string[NbEleves];
+            Projets = new string[NbProjets];
+            ProjetsD = new string[NbProjets];
+            SolutionValidee = false;
             DateTime start = DateTime.Now;
             solutions = "";
-            int[,] matrice = new int[NbEleves, NbProjets];
-
+            int[,] matrice = ExtraireCsv(lienFichier.Text);
+            NbEleves = Eleves.Count();
+            NbProjets = Projets.Count();
+            NbParProjet = new int[NbProjets];
 
             //Creation de la matrice
             CreerMatrice(matrice);
@@ -116,13 +123,13 @@ namespace OARP
             Matrice = (double[][])MatriceBase.Clone();
             ProjetsD = (string[])Projets.Clone();
             EquilibrageProjetsMedian();
+            MessageBox.Show("Equilibrage des projets : CHECK");
             while (suppression == true)
             {
 
                 //AfficherNbParProjet();
                 Matrice = DupliquerVoeux(Matrice);
                 //Matrice = MatriceCarre(Matrice);
-
                 //Repartition
                 Munkres repartition;
                 bool succes;
@@ -136,6 +143,7 @@ namespace OARP
                 suppression = SupprimerProjet(i);
                 Matrice = (double[][])MatriceBase.Clone();
                 ProjetsD = (string[])Projets.Clone();
+                MessageBox.Show("Solution n°"+i+" : CHECK");
                 i++;
             }
             TimeSpan dur = DateTime.Now - start;
@@ -238,6 +246,7 @@ namespace OARP
         {
             double[] notes = new double[NbProjets];
             notes = CalculerPopularite();
+            
             int indexPopularite;
             int placeAttribue = NbEleves;
             bool placesRestantes = false;
@@ -246,28 +255,30 @@ namespace OARP
             //On vérifie s'il y a assez pour tous les projets, sinon, on en retire.
             if (NbEleves / NbMin < NbProjets) { projetsGardes = NbEleves / NbMin; }
             //Permet de retirer les projets qui sont sous côtés, ajouter des places dans les projets surcotés etc...string affichage = "";
-
+            
             while (!placesRestantes)
             {
                 for (int i = 0; i < projetsGardes; i++)
                 {
-
+                    
                     indexPopularite = TrouverMinimum(notes);
-
                     notes[indexPopularite] = 1000000000;
                     NbParProjet[indexPopularite] += 1;
-
+                    
                     placeAttribue = placeAttribue - 1;
                     if (placeAttribue == 0)
                     {
                         placesRestantes = true;
                         break;
                     }
+                    
                 }
                 notes = CalculerPopularite();
+                
             }
 
         }
+        
         int VerifierProjetsComplets(double[] solution)
         {
             int index = 0;
@@ -355,7 +366,7 @@ namespace OARP
             }
             return r;
         }
-        public void ExtraireCsv(string lien)
+        public int[,] ExtraireCsv(string lien)
         ///Permet d'extraire d'un fichier csv une matrice int[,]
         {
             int i = 0;
@@ -380,35 +391,32 @@ namespace OARP
 
             int[,] matrice = new int[i-1, Projets.Count()];
             string[] voeux = new string[Projets.Count()];
-            string[] eleves = new string[i];
+            string[] eleves = new string[i-1];
             int nombre;
-            for (int x = 0; x < i; x++)
+            for (int x = 1; x < i; x++)
             {
                 voeux = ligne[x].Split(new string[] { "," }, StringSplitOptions.None);
                 
-                if(x!= 0)
+                eleves[x-1] = voeux[0];
+                for (int y = 1; y < Projets.Count()+1; y++)
                 {
-                    eleves[x] = voeux[0];
-                    for (int y = 1; y < Projets.Count()+1; y++)
+                    //MessageBox.Show(x+" "+y+" "+voeux[y]);
+                    if (int.TryParse(voeux[y],out nombre))
                     {
-                        //MessageBox.Show(x+" "+y+" "+voeux[y]);
-                        if (int.TryParse(voeux[y],out nombre))
-                        {
                             
-                            matrice[x-1, y-1] = nombre;
-                        }
+                        matrice[x-1, y-1] = nombre;
+                    }
                         
-                        else
-                        {
-                            matrice[x-1, y-1] = 0;
-                        }
+                    else
+                    {
+                        matrice[x-1, y-1] = 0;
                     }
                 }
                 
+                
             }
-            AfficherMatrice(Conversion(matrice));
-            AfficherListe("élèves", eleves);
-
+            Eleves = eleves;
+            return matrice;
         }
         public void CreerMatrice(int[,] matrice)
         {
@@ -690,6 +698,6 @@ namespace OARP
         {
             System.Diagnostics.Process.Start("instructions.txt");
         }
-
+        
     }
 }

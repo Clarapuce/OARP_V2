@@ -34,11 +34,7 @@
             this.lienFichier = new System.Windows.Forms.TextBox();
             this.parcourir = new System.Windows.Forms.Button();
             this.lancer = new System.Windows.Forms.Button();
-            this.nbEleves = new System.Windows.Forms.TextBox();
-            this.nbProjets = new System.Windows.Forms.TextBox();
             this.maxPlace = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.minPlace = new System.Windows.Forms.TextBox();
@@ -79,15 +75,16 @@
             // 
             // lienFichier
             // 
-            this.lienFichier.Location = new System.Drawing.Point(16, 311);
+            this.lienFichier.Location = new System.Drawing.Point(23, 338);
             this.lienFichier.Name = "lienFichier";
+            this.lienFichier.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.lienFichier.Size = new System.Drawing.Size(261, 20);
             this.lienFichier.TabIndex = 3;
-            this.lienFichier.Text = "*.csv";
+            this.lienFichier.Text = "C:\\Users\\Clarapuce\\Desktop\\ENSC\\2A\\OARP_V2\\Test expe goûté - Feuille 1.csv";
             // 
             // parcourir
             // 
-            this.parcourir.Location = new System.Drawing.Point(305, 308);
+            this.parcourir.Location = new System.Drawing.Point(312, 335);
             this.parcourir.Name = "parcourir";
             this.parcourir.Size = new System.Drawing.Size(75, 23);
             this.parcourir.TabIndex = 4;
@@ -97,7 +94,7 @@
             // 
             // lancer
             // 
-            this.lancer.Location = new System.Drawing.Point(154, 458);
+            this.lancer.Location = new System.Drawing.Point(157, 443);
             this.lancer.Name = "lancer";
             this.lancer.Size = new System.Drawing.Size(104, 37);
             this.lancer.TabIndex = 5;
@@ -105,52 +102,18 @@
             this.lancer.UseVisualStyleBackColor = true;
             this.lancer.Click += new System.EventHandler(this.lancer_Click);
             // 
-            // nbEleves
-            // 
-            this.nbEleves.Location = new System.Drawing.Point(226, 338);
-            this.nbEleves.Name = "nbEleves";
-            this.nbEleves.Size = new System.Drawing.Size(50, 20);
-            this.nbEleves.TabIndex = 6;
-            this.nbEleves.Text = "75";
-            // 
-            // nbProjets
-            // 
-            this.nbProjets.Location = new System.Drawing.Point(225, 364);
-            this.nbProjets.Name = "nbProjets";
-            this.nbProjets.Size = new System.Drawing.Size(51, 20);
-            this.nbProjets.TabIndex = 7;
-            this.nbProjets.Text = "20";
-            // 
             // maxPlace
             // 
-            this.maxPlace.Location = new System.Drawing.Point(226, 390);
+            this.maxPlace.Location = new System.Drawing.Point(229, 375);
             this.maxPlace.Name = "maxPlace";
             this.maxPlace.Size = new System.Drawing.Size(51, 20);
             this.maxPlace.TabIndex = 8;
-            this.maxPlace.Text = "6";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(110, 341);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Nombre d\'élèves";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(103, 367);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(93, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Nombre de projets";
+            this.maxPlace.Text = "5";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 393);
+            this.label5.Location = new System.Drawing.Point(15, 378);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(184, 13);
             this.label5.TabIndex = 11;
@@ -159,7 +122,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 419);
+            this.label6.Location = new System.Drawing.Point(15, 404);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(181, 13);
             this.label6.TabIndex = 13;
@@ -167,11 +130,11 @@
             // 
             // minPlace
             // 
-            this.minPlace.Location = new System.Drawing.Point(226, 416);
+            this.minPlace.Location = new System.Drawing.Point(229, 401);
             this.minPlace.Name = "minPlace";
             this.minPlace.Size = new System.Drawing.Size(51, 20);
             this.minPlace.TabIndex = 12;
-            this.minPlace.Text = "4";
+            this.minPlace.Text = "3";
             // 
             // boutonAide
             // 
@@ -193,11 +156,7 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.minPlace);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.maxPlace);
-            this.Controls.Add(this.nbProjets);
-            this.Controls.Add(this.nbEleves);
             this.Controls.Add(this.lancer);
             this.Controls.Add(this.parcourir);
             this.Controls.Add(this.lienFichier);
@@ -222,11 +181,7 @@
         private System.Windows.Forms.TextBox lienFichier;
         private System.Windows.Forms.Button parcourir;
         private System.Windows.Forms.Button lancer;
-        private System.Windows.Forms.TextBox nbEleves;
-        private System.Windows.Forms.TextBox nbProjets;
         private System.Windows.Forms.TextBox maxPlace;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox minPlace;

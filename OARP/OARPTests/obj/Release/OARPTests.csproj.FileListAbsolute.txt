@@ -1,0 +1,2 @@
+C:\Users\Clarapuce\Desktop\ENSC\2A\OARP_V2\OARP\OARPTests\obj\Release\OARPTests.csprojAssemblyReference.cache
+C:\Users\Clarapuce\Desktop\ENSC\2A\OARP_V2\OARP\OARPTests\obj\Release\OARPTests.csproj.CoreCompileInputs.cache
