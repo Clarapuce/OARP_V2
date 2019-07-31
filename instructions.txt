@@ -16,10 +16,11 @@ Attention, toute case contenant autre chose qu'un nombre de 1 à 10 sera considér
 Le tableur doit avoir la liste des projets sur sa première ligne, et la liste des élèves sur la première colonne.
 Exemple : 
 
-	| Projet 1 | Projet 2 | Projet 3 | Projet 4 |
-Eleve 1 |    1     |     1    |    2     |	    |
-Eleve 2 |	   |	 3    |    2	 |     1    |
-Eleve 3 |    2	   |     2    |    1	 |     3    |
+	   | Projet 1 | Projet 2 | Projet 3 | Projet 4 |
+Obligatoire|    X     |          |    X     |          |
+Eleve 1    |    1     |     1    |    2     |	       |
+Eleve 2    |	      |	    3    |    2	    |    1     |
+Eleve 3    |    2     |     2    |    1	    |     3    |
 
 
 Exportez le fichier au format csv.

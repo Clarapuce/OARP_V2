@@ -80,7 +80,7 @@
             this.lienFichier.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.lienFichier.Size = new System.Drawing.Size(261, 20);
             this.lienFichier.TabIndex = 3;
-            this.lienFichier.Text = "C:\\Users\\Clarapuce\\Desktop\\ENSC\\2A\\OARP_V2\\Test expe goûté - Feuille 1.csv";
+            this.lienFichier.Text = "C:\\Users\\Clarapuce\\Desktop\\ENSC\\2A\\OARP_V2\\Test final - Feuille 1 (1).csv";
             // 
             // parcourir
             // 
@@ -108,7 +108,7 @@
             this.maxPlace.Name = "maxPlace";
             this.maxPlace.Size = new System.Drawing.Size(51, 20);
             this.maxPlace.TabIndex = 8;
-            this.maxPlace.Text = "5";
+            this.maxPlace.Text = "6";
             // 
             // label5
             // 
@@ -134,7 +134,7 @@
             this.minPlace.Name = "minPlace";
             this.minPlace.Size = new System.Drawing.Size(51, 20);
             this.minPlace.TabIndex = 12;
-            this.minPlace.Text = "3";
+            this.minPlace.Text = "4";
             // 
             // boutonAide
             // 
