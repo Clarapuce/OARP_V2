@@ -38,51 +38,64 @@ namespace OARP
 
         private void lancer_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    ExtraireCsv(lienFichier.Text);
-            //    NbMax = int.Parse(maxPlace.Text);
-            //    NbMin = int.Parse(minPlace.Text);
-            //    NbParProjet = new int[NbProjets];
-            //    Eleves = new string[NbEleves];
-            //    Projets = new string[NbProjets];
-            //    ProjetsD = new string[NbProjets];
-            //    SolutionValidee = false;
-            //}
-            //catch { MessageBox.Show("Veuillez renseigner des nombres supérieurs à zéro."); }
-            //if (NbMax < NbMin)
-            //{
-            //    MessageBox.Show("Le nombre de place minimum par projet doit être inférieur au nombre de place maximum par projet.");
-            //}
-            //else
-            //{
-            //    if (NbEleves > NbProjets * NbMax)
-            //    {
-            //        MessageBox.Show("Il n'y a pas assez de places pour le nombre d'élèves indiqué.");
+            
+            //Initialisation des variables
+            NbMax = int.Parse(maxPlace.Text);
+            NbMin = int.Parse(minPlace.Text);
+            Eleves = new string[NbEleves];
+            Projets = new string[NbProjets];
+            ProjetsD = new string[NbProjets];
+            SolutionValidee = false;
+            solutions = "";
+            bool echec = false;
 
-            //    }
-            //    else
-            //    {
-            //        if (NbEleves < NbMin)
-            //        {
-            //            MessageBox.Show("Il n'y a pas assez d'élèves pour remplir un projet.");
-            //        }
-            //        else
-            //        {
-            //            try
-            //            {
-            //                LancerRepartition();
+            //Extraction du CSV, modification de Eleves et Projets
+            try
+            {
+                int[,] matrice = ExtraireCsv(lienFichier.Text);
+            }
+                
+            catch
+            {
+                MessageBox.Show("Votre fichier csv n'a pas pu être extrait. Veuillez vérifier sa structure. Veuillez d'insérer aucun espace dans vos champs.");
+                echec = true;
+            }
+            if(!echec)
+            {
+                int[,] matrice = ExtraireCsv(lienFichier.Text);
+                NbEleves = Eleves.Count();
+                NbProjets = Projets.Count();
+                if (NbMax < NbMin)
+                {
+                    MessageBox.Show("Le nombre de place minimum par projet doit être inférieur au nombre de place maximum par projet.");
+                }
+                else
+                {
+                    if (NbEleves > NbProjets * NbMax)
+                    {
+                        MessageBox.Show("Il n'y a pas assez de places pour le nombre d'élèves indiqué.");
 
-            //            }
-            //            catch { MessageBox.Show("Il y a eu un problème dans la répartition. Veuillez vérifier que le fichier .csv est correct et qu'il est cohérent avec vos renseignements."); }
+                    }
+                    else
+                    {
+                        if (NbEleves < NbMin)
+                        {
+                            MessageBox.Show("Il n'y a pas assez d'élèves pour remplir un projet.");
+                        }
+                        else
+                        {
+                            try
+                            {
+                                LancerRepartition(matrice);
 
-            //        }
+                            }
+                            catch { MessageBox.Show("Il y a eu un problème dans la répartition. Veuillez vérifier que le fichier .csv est correct et qu'il est cohérent avec vos renseignements."); }
 
-            //    }
-            //}
+                        }
 
-            LancerRepartition();
-
+                    }
+                }
+            }
 
         }
 
@@ -98,22 +111,9 @@ namespace OARP
 
         }
 
-        private void LancerRepartition()
+        private void LancerRepartition(int[,] matrice)
         {
-            //Initialisation des variables
-            NbMax = int.Parse(maxPlace.Text);
-            NbMin = int.Parse(minPlace.Text);
-            Eleves = new string[NbEleves];
-            Projets = new string[NbProjets];
-            ProjetsD = new string[NbProjets];
-            SolutionValidee = false;
             DateTime start = DateTime.Now;
-            solutions = "";
-
-            //Extraction du CSV, modification de Eleves et Projets
-            int[,] matrice = ExtraireCsv(lienFichier.Text);
-            NbEleves = Eleves.Count();
-            NbProjets = Projets.Count();
             NbParProjet = new int[NbProjets];
             //Creation de la matrice
             //CreerMatrice(matrice);
@@ -139,7 +139,7 @@ namespace OARP
                     if(i==1)
                     {
                         echec = true;
-                        MessageBox.Show("Problème dans les paramètres de répartition. Vérifiez qu'il y a assez de place pour chaque élève, ou qu'il n'y a pas trop de projets obligatoires.")
+                        MessageBox.Show("Problème dans les paramètres de répartition. Vérifiez qu'il y a assez de place pour chaque élève, ou qu'il n'y a pas trop de projets obligatoires.");
                     }
                     break;
                 }
