@@ -99,17 +99,7 @@ namespace OARP
 
         }
 
-        private void parcourir_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "csv files (*.csv)|*.csv";
-            ofd.FilterIndex = 1;
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                lienFichier.Text = ofd.FileName;
-            }
-
-        }
+        
 
         private void LancerRepartition(int[,] matrice)
         {
@@ -579,7 +569,7 @@ namespace OARP
                 {
                     if (m[i, j] == 0)
                     {
-                        m[i, j] = 90;
+                        m[i, j] = 900;
                     }
                 }
                 index = 0;
@@ -778,19 +768,36 @@ namespace OARP
                 }
                 affichage += "\n\n";
             }
-            if (Directory.Exists("../Solution") == false)
+            if (Directory.Exists(lienSave.Text) == false)
             {
-                Directory.CreateDirectory("../Solution");
+                Directory.CreateDirectory(lienSave.Text );
             }
             string nom = "Solution_" + num + ".csv";
-            File.WriteAllText(Path.Combine("../Solution", nom), affichage, Encoding.UTF8);
-            System.Diagnostics.Process.Start(Path.Combine("../Solution", nom));
+            File.WriteAllText(Path.Combine(lienSave.Text , nom), affichage, Encoding.UTF8);
+            System.Diagnostics.Process.Start(Path.Combine(lienSave.Text , nom));
         }
+        private void parcourir_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "csv files (*.csv)|*.csv";
+            ofd.FilterIndex = 1;
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                lienFichier.Text = ofd.FileName;
+            }
 
+        }
         private void boutonAide_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("instructions.txt");
         }
-        
+        private void parcourir_Click2(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd= new FolderBrowserDialog();
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                lienSave.Text = fbd.SelectedPath;
+            }
+        }
     }
 }
